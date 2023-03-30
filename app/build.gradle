@@ -1,0 +1,64 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+apply {
+    from '../commons.gradle'
+}
+
+android {
+    compileSdkVersion 33
+
+    Properties properties = new Properties()
+    if (rootProject.file("local.properties").exists()) {
+        properties.load(rootProject.file("local.properties").newDataInputStream())
+    }
+
+    defaultConfig {
+        applicationId "com.tokbox.sample.basicvideochat"
+        minSdkVersion extMinSdkVersion
+        targetSdkVersion 33
+        versionCode extVersionCode
+        versionName extVersionName
+
+        //Please paste project Api Key here or read from local.property file
+        buildConfigField("String", "watchrtc_api_key", properties.getProperty("watchrtc_api_key"))
+        buildConfigField("String", "token_publisher", properties.getProperty("token_publisher"))
+        buildConfigField("String", "session_id", properties.getProperty("session_id"))
+        buildConfigField("String", "vonage_key", properties.getProperty("vonage_key"))
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled extMinifyEnabled
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    // Dependency versions are defined in the ../commons.gradle file
+    implementation "com.opentok.android:opentok-android-sdk:${extOpentokSdkVersion}"
+    implementation "androidx.appcompat:appcompat:${extAppCompatVersion}"
+    implementation "pub.devrel:easypermissions:${extEasyPermissionsVersion}"
+    implementation "androidx.constraintlayout:constraintlayout:${extConstraintLyoutVersion}"
+
+    implementation "com.squareup.retrofit2:retrofit:${extRetrofitVersion}"
+    implementation "com.squareup.okhttp3:okhttp:${extOkHttpVersion}"
+    implementation "com.squareup.retrofit2:converter-moshi:${extRetrofit2ConverterMoshi}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${extOkHttpLoggingInterceptor}"
+
+    //WatchRTC android SDK
+    implementation 'com.spearline:testrtc-watchrtc-sdk:1.0.0'
+    implementation 'com.google.android.material:material:1.8.0'
+}
