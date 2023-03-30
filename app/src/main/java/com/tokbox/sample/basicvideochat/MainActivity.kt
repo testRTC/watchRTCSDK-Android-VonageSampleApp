@@ -30,6 +30,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity(), PermissionCallbacks {
     private var retrofit: Retrofit? = null
@@ -429,13 +430,28 @@ class MainActivity : AppCompatActivity(), PermissionCallbacks {
         val config = WatchRTCConfig(
             BuildConfig.watchrtc_api_key,
             "Vonage-SDK-Android-$watchRTCRoomId",
-            if (Build.MANUFACTURER == "samsung") "PC_0" else "PC_1",
+            getPeerId(),
             HashMap<String, ArrayList<String>>().apply {
                 put("company", ArrayList<String>().apply { add("Spearline") })
             },
             null
         )
         watchRTC?.setConfig(config)
+    }
+
+    //Generating unique PeerId for testing purpose, You can change as per requirement.
+    private fun getPeerId(): String {
+        var timeStamp = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()).toString()
+        if (timeStamp.length >= 4) {
+            timeStamp = timeStamp.takeLast(4)
+        }
+        return "PC_" + getRandomNumber() + "_" + Build.MANUFACTURER + "_" + timeStamp
+    }
+
+    private fun getRandomNumber(): Int {
+        val rand = Random()
+        val maxNumber = 100
+        return rand.nextInt(maxNumber) + 1
     }
 
     /**
