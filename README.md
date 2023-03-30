@@ -1,20 +1,14 @@
 # WatchRTC Vonage Android sample application
-This is the WatchRTC Android Vonage sample application.
+This is the WatchRTC Android Vonage sample application. 
 
 WatchRTC
 -----------
-WatchRTC integration code will located in `MainActivity.kt` file and WatchRTC sdk init function is `initWatchRTCSDK()`
+WatchRTC SDK integration code will located in `MainActivity.kt` file and WatchRTC sdk init function is `initWatchRTCSDK()`
 
-# Basic Video Chat
-
-This application provides a completed version of the OpenTok [Basic Video Chat tutorial](https://tokbox.com/developer/tutorials/android/) for Android (differing only in some additional validation checks). 
-Upon deploying this sample application, you should be able to have two-way audio and video communication using OpenTok.
-
-Main features:
-* Connect to an OpenTok session
-* Publish an audio-video stream to the session
-* Subscribe to another client's audio-video stream
-
+Basic Video Chat
+-----------
+This application provides a completed version of the OpenTok [Basic Video Chat tutorial](https://tokbox.com/developer/tutorials/android/) for Android. 
+With use of this application we can have Video and Audio calls.
 
 Step to use
 -----------
@@ -28,5 +22,6 @@ To use this application:
 Further Reading
 -----------
 - Read more about [OpenTok Android SDK](https://tokbox.com/developer/sdks/android/)
+- [WatchRTC SDK](https://github.com/testRTC/watchRTCSDK-Android)
 - [WatchRTC Sample application](https://github.com/testRTC/watchRTCSDK-Android-SampleApp)
 - [WatchRTC Twilio Sample application](https://github.com/testRTC/watchRTCSDK-Android-TwilioSampleApp)
