@@ -8,7 +8,12 @@ apply {
 }
 
 android {
-    compileSdkVersion 33
+    namespace 'com.tokbox.sample.basicvideochat'
+    compileSdk 34
+
+    buildFeatures {
+        buildConfig true
+    }
 
     Properties properties = new Properties()
     if (rootProject.file("local.properties").exists()) {
@@ -18,15 +23,15 @@ android {
     defaultConfig {
         applicationId "com.tokbox.sample.basicvideochat"
         minSdkVersion extMinSdkVersion
-        targetSdkVersion 33
+        targetSdk 34
         versionCode extVersionCode
         versionName extVersionName
 
         //Please paste project Api Key here or read from local.property file
-        buildConfigField("String", "watchrtc_api_key", properties.getProperty("watchrtc_api_key"))
-        buildConfigField("String", "token_publisher", properties.getProperty("token_publisher"))
-        buildConfigField("String", "session_id", properties.getProperty("session_id"))
-        buildConfigField("String", "vonage_key", properties.getProperty("vonage_key"))
+        buildConfigField("String", "watchrtc_api_key", "\"${properties.getProperty("watchrtc_api_key") ?: ""}\"")
+        buildConfigField("String", "token_publisher", "\"${properties.getProperty("token_publisher") ?: ""}\"")
+        buildConfigField("String", "session_id", "\"${properties.getProperty("session_id") ?: ""}\"")
+        buildConfigField("String", "vonage_key", "\"${properties.getProperty("vonage_key") ?: ""}\"")
     }
 
     buildTypes {
@@ -58,7 +63,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:${extRetrofit2ConverterMoshi}"
     implementation "com.squareup.okhttp3:logging-interceptor:${extOkHttpLoggingInterceptor}"
 
-    //WatchRTC android SDK
-    implementation 'com.spearline:testrtc-watchrtc-sdk:1.0.0'
+    //WatchRTC android SDK - from Maven Central
+    implementation 'com.spearline:testrtc-watchrtc-sdk:1.40.3'
     implementation 'com.google.android.material:material:1.8.0'
 }

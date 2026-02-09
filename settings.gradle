@@ -14,3 +14,7 @@ dependencyResolutionManagement {
 }
 
 include ':app'
+// Include local WatchRTC SDK module for testing
+// include ':watch-rtc-sdk'
+// project(':watch-rtc-sdk').projectDir = new File('C:/Users/RahulDarna/Projects/watchRTCSDK-Android-code/watch-rtc-sdk')
+

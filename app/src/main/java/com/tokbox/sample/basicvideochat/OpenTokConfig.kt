@@ -19,13 +19,13 @@ object OpenTokConfig {
     */
 
     // Replace with a API key
-    const val API_KEY = BuildConfig.vonage_key
+    val API_KEY: String get() = BuildConfig.vonage_key ?: ""
 
     // Replace with a generated Session ID
-    const val SESSION_ID = BuildConfig.session_id
+    val SESSION_ID: String get() = BuildConfig.session_id ?: ""
 
     // Replace with a generated token (from the dashboard or using an OpenTok server SDK)
-    const val TOKEN_PUBLISHER = BuildConfig.token_publisher
+    val TOKEN_PUBLISHER: String get() = BuildConfig.token_publisher ?: ""
 
 
     // *** The code below is to validate this configuration file. You do not need to modify it  ***
